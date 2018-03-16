@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.yudownloader">
+
+    <!--Internet-->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!--Storage-->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <!--Camera-->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" />
+
+    <!--Camera Features-->
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-feature android:name="android.hardware.camera.flash" />
+
+    <!--Earphone Buttons-->
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+
+    <!-- Service Foreground-->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+
+    <!--Phone Number-->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+
+    <application
+        android:name="com.yudownloader.common.App"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_android"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/ic_android"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+
+
+        android:hardwareAccelerated="false"
+        android:largeHeap="true"
+
+        >
+
+        <activity
+            android:name="com.yudownloader.activity.ActYouTube"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeFullScreen"
+
+            android:hardwareAccelerated="true"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:windowSoftInputMode="adjustPan" >
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MEDIA_BUTTON" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <!-- For getting text when other applcation share text like sharing youtube link to this app  -->
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.yudownloader.activity.ActYTubePlay"
+            android:theme="@style/AppThemeFullScreen"
+
+            android:hardwareAccelerated="true"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="landscape" />
+
+
+        <!-- ========Download========= -->
+
+
+        <activity
+            android:name="com.yudownloader.ui.main.MainActivity"
+            android:label="@string/app_name"
+
+            android:launchMode="singleTask">
+            <intent-filter tools:ignore="GoogleAppIndexingUrlError">
+
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.BROWSABLE" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="intent.DOWNLOAD"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data
+
+                    android:mimeType="application/*"
+                    android:host="*"
+                    android:scheme="http"/>
+                <data
+                    android:mimeType="application/*"
+                    android:host="*"
+                    android:scheme="https"/>
+            </intent-filter>
+            <intent-filter>
+                <data android:scheme="https"/>
+                <data android:scheme="http"/>
+                <data android:host="google.com"/>
+                <data android:host="www.google.com"/>
+                <data android:host="r2---sn-p5qlsn6z.googlevideo.com"/>
+                <data android:host="*.googlevideo.com"/>
+                <data android:host="*.*"/>
+                <data android:scheme="customscheme"/>
+                <data android:host="customHost"/>
+
+                <data android:pathPattern=".*"/>
+
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+            </intent-filter>
+
+
+        </activity>
+
+        <activity
+            android:name="com.yudownloader.ui.main.DetailActivity"
+            android:label="@string/app_name"
+            android:theme="@style/Theme_App_Blue">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+        </activity>
+
+
+        <activity
+            android:name="com.yudownloader.ui.settings.SettingsActivity"
+            android:label="@string/settings"
+            android:theme="@style/Theme_App_Blue">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+        </activity>
+
+        <activity
+            android:name="com.nononsenseapps.filepicker.FilePickerActivity"
+            android:label="@string/app_name"
+            android:theme="@style/Theme_App_Blue">
+
+
+        </activity>
+
+        <service
+            android:name="com.yudownloader.service.DownloadManagerService"/>
+
+
+
+
+
+    </application>
+
+</manifest>
