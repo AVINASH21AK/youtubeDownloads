@@ -3,6 +3,8 @@ package com.yudownloader.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.yudownloader.common.App;
+
 /*
   Settings Provider
 */
@@ -12,8 +14,9 @@ public class Settings
 	
 	public static final String DOWNLOAD_DIRECTORY = "download_directory";
 	
-	public static final String DEFAULT_PATH = "/storage/sdcard0/3Downloader";
-	
+	//public static final String DEFAULT_PATH = "/storage/sdcard0/3Downloader";
+	public static final String DEFAULT_PATH = ""+ App.strDicFullMain;
+
 	private static Settings sInstance;
 	
 	private SharedPreferences mPrefs;

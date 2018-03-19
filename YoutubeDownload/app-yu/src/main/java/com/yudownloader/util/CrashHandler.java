@@ -5,12 +5,15 @@ import android.content.pm.PackageInfo;
 import android.os.Build;
 import android.os.Environment;
 
+import com.yudownloader.common.App;
+
 import java.io.File;
 import java.io.PrintWriter;
 
 public class CrashHandler implements Thread.UncaughtExceptionHandler
 {
-	public static String CRASH_DIR = Environment.getExternalStorageDirectory().getPath() + "/3DownloaderCrash/";
+	//public static String CRASH_DIR = Environment.getExternalStorageDirectory().getPath() + "/3DownloaderCrash/";
+	public static String CRASH_DIR = App.strDicFullMain + "/";
 	public static String CRASH_LOG = CRASH_DIR + "last_crash.log";
 	public static String CRASH_TAG = CRASH_DIR + ".crashed";
 
